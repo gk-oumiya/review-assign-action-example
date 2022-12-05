@@ -11,4 +11,4 @@ jobs:
       - uses: hkusu/review-assign-action@v1
         with:
           assignees: ${{ github.actor }} # assign pull request author
-          reviewers: ykws # if draft, assigned when draft is released
+          reviewers: gk-oumiya/developers # if draft, assigned when draft is released
