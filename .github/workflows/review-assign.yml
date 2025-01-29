@@ -20,5 +20,5 @@ jobs:
         with:
           patterns: |
             core/**
-          run: gh pr edit ${{ github.event.number }} --add-reviewer 'gk-oumiya/reviewers'
-          run-if-not: gh pr edit ${{ github.event.number }} --remove-reviewer 'gk-oumiya/reviewers'
+          run: gh pr edit ${{ github.event.number }} --add-reviewer gk-oumiya/reviewers
+          run-if-not: gh pr edit ${{ github.event.number }} --remove-reviewer gk-oumiya/reviewers
