@@ -7,8 +7,18 @@ on:
 jobs:
   assign:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read # for yumemi-inc/path-filter
+      pull-requests: write # for reviewers edit
+      repository-projects: read # for reviewers
+    env:
+      GH_REPO: ${{ github.repository }}
+      GH_TOKEN: ${{ github.token }}
     steps:
-      - uses: hkusu/review-assign-action@v1
+      - name: core
+        uses: yumemi-inc/path-filter@v2
         with:
-          assignees: ${{ github.actor }} # assign pull request author
-          reviewers: gk-oumiya/developers # if draft, assigned when draft is released
+          patterns: |
+            core/**
+          run: gh pr review-request ${{ github.event.number }} --add 'gk-oumiya/reviewers'
+          run-if-not: gh pr review-request ${{ github.event.number }} --remove 'gk-oumiya/reviewers'
